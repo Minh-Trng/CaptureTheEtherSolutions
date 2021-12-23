@@ -5,7 +5,7 @@ import time
 
 w3 = Web3(Web3.HTTPProvider(CONFIG["INFURA_URL_ROPSTEN"]))
 
-contract_address = "0x0Ec5c9dbe1dB49f83500AcCdAF236a83c901A6cb"
+CONTRACT_ADDRESS = "0x0Ec5c9dbe1dB49f83500AcCdAF236a83c901A6cb"
 
 with open('CTE_Contracts/PredictTheBlockHashChallenge.sol', 'r') as file:
     challenge_code = file.read()
@@ -15,7 +15,7 @@ compiled_sol = compile_source(challenge_code, solc_version="0.4.21")
 contract_id, contract_interface = compiled_sol.popitem()
 abi = contract_interface["abi"]
 
-contract = w3.eth.contract(address=contract_address, abi=abi)
+contract = w3.eth.contract(address=CONTRACT_ADDRESS, abi=abi)
 
 
 tx = contract.functions.lockInGuess(w3.toBytes(0)).buildTransaction({
