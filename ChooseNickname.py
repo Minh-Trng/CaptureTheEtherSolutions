@@ -13,10 +13,10 @@ contract = w3.eth.contract(address=address, abi=abi)
 new_name_bytes = NEW_NAME.encode("utf-8")
 
 tx = contract.functions.setNickname(new_name_bytes).buildTransaction({
-    "nonce": w3.eth.getTransactionCount(CONFIG["ADDRESS"])
+    "nonce": w3.eth.getTransactionCount(CONFIG["ADDRESS_1"])
 })
 
-signed_tx = w3.eth.account.signTransaction(tx, private_key=CONFIG["PRIVATE_KEY"])
+signed_tx = w3.eth.account.signTransaction(tx, private_key=CONFIG["PRIVATE_KEY_1"])
 
 result = w3.eth.sendRawTransaction(signed_tx.rawTransaction)
 

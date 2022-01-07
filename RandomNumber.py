@@ -14,5 +14,5 @@ last_byte = keccak_hash[-1] #conversion to uint8
 
 print(last_byte)
 
-
+#better and more interesting alternative by reading the storage: https://cmichel.io/capture-the-ether-solutions/
 

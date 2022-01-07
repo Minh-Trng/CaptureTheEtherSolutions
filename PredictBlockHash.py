@@ -19,13 +19,13 @@ contract = w3.eth.contract(address=CONTRACT_ADDRESS, abi=abi)
 
 
 tx = contract.functions.lockInGuess(w3.toBytes(0)).buildTransaction({
-    "nonce": w3.eth.getTransactionCount(CONFIG["ADDRESS"]),
+    "nonce": w3.eth.getTransactionCount(CONFIG["ADDRESS_1"]),
     'value': w3.toWei(1, 'ether'),
     'gas': 3000000,
     'gasPrice': w3.toWei('5', 'gwei')
 })
 
-signed_tx = w3.eth.account.signTransaction(tx, private_key=CONFIG["PRIVATE_KEY"])
+signed_tx = w3.eth.account.signTransaction(tx, private_key=CONFIG["PRIVATE_KEY_1"])
 
 tx_hash = w3.eth.sendRawTransaction(signed_tx.rawTransaction)
 
@@ -41,12 +41,12 @@ while True:
         #all blockhashes of blocks older than 256 blocks are 0
         if latest_blocknumber - tx_blocknumber > 256:
             tx = contract.functions.settle().buildTransaction({
-                "nonce": w3.eth.getTransactionCount(CONFIG["ADDRESS"]),
+                "nonce": w3.eth.getTransactionCount(CONFIG["ADDRESS_1"]),
                 'gas': 3000000,
                 'gasPrice': w3.toWei('5', 'gwei')
             })
 
-            signed_tx = w3.eth.account.signTransaction(tx, private_key=CONFIG["PRIVATE_KEY"])
+            signed_tx = w3.eth.account.signTransaction(tx, private_key=CONFIG["PRIVATE_KEY_1"])
             tx_hash = w3.eth.sendRawTransaction(signed_tx.rawTransaction)
             print(w3.toHex(tx_hash))
             break

@@ -23,23 +23,23 @@ amount_to_buy = (2**256)//(10**18)+1
 value_to_pay = amount_to_buy * (10 ** 18) % (2 ** 256)
 
 buy_tx = contract.functions.buy(amount_to_buy).buildTransaction({
-    "nonce": w3.eth.getTransactionCount(CONFIG["ADDRESS"]),
+    "nonce": w3.eth.getTransactionCount(CONFIG["ADDRESS_1"]),
     'value': value_to_pay,
     'gas': 3000000,
     'gasPrice': w3.toWei('5', 'gwei')
 })
-signed_tx = w3.eth.account.signTransaction(buy_tx, private_key=CONFIG["PRIVATE_KEY"])
+signed_tx = w3.eth.account.signTransaction(buy_tx, private_key=CONFIG["PRIVATE_KEY_1"])
 tx_hash = w3.eth.sendRawTransaction(signed_tx.rawTransaction)
 print(w3.toHex(tx_hash))
 
 receipt = w3.eth.waitForTransactionReceipt(tx_hash)
 
 sell_tx = contract.functions.sell(1).buildTransaction({
-    "nonce": w3.eth.getTransactionCount(CONFIG["ADDRESS"]),
+    "nonce": w3.eth.getTransactionCount(CONFIG["ADDRESS_1"]),
     'gas': 3000000,
     'gasPrice': w3.toWei('5', 'gwei')
 })
-signed_tx = w3.eth.account.signTransaction(sell_tx, private_key=CONFIG["PRIVATE_KEY"])
+signed_tx = w3.eth.account.signTransaction(sell_tx, private_key=CONFIG["PRIVATE_KEY_1"])
 tx_hash = w3.eth.sendRawTransaction(signed_tx.rawTransaction)
 print(w3.toHex(tx_hash))
 
