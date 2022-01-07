@@ -42,3 +42,5 @@ sell_tx = contract.functions.sell(1).buildTransaction({
 signed_tx = w3.eth.account.signTransaction(sell_tx, private_key=CONFIG["PRIVATE_KEY"])
 tx_hash = w3.eth.sendRawTransaction(signed_tx.rawTransaction)
 print(w3.toHex(tx_hash))
+
+assert contract.functions.isComplete().call()

@@ -53,3 +53,5 @@ while True:
 
     except Exception as e:
         continue
+
+assert contract.functions.isComplete().call()
